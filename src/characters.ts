@@ -1,5 +1,6 @@
 export interface CharacterResponse{
     items: CharacterItem[],
+    meta:{}
     linkHeader: String | null,
     status: number
 
@@ -19,6 +20,7 @@ export interface CharacterItem{
 }           
 
 export class Character{
+    
     static app = document.querySelector<HTMLDivElement>('#app')!;
     id : Number = 0;
     name: String = '';
@@ -44,6 +46,10 @@ export class Character{
         this.deletedAt = item.deletedAt;
     }
 
+    static cleanApp(){
+      Character.app.innerHTML = '';
+    }
+
     renderCharacter(){
         Character.app.insertAdjacentHTML('beforeend', `
         <div class="character-card">
@@ -51,10 +57,10 @@ export class Character{
             <img src="${this.image}" class="character-img" />
           </a>
           <h1>${this.name}</h1>
-          <h2>${this.race}</h2>
-          <h2>${this.ki}</h2>
-          <h2>${this.maxKi}</h2>
-          <h2>${this.affiliation}</h2>
+          <h2>Raza: ${this.race}</h2>
+          <h2>Ki: ${this.ki}</h2>
+          <h2>MaxKi: ${this.maxKi}</h2>
+          <h2>Afiliación: ${this.affiliation}</h2>
         </div>
       `);
         
